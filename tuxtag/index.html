@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TuxTag — Open Source Bluetooth Tracker</title>
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐧</text></svg>"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            /* ===== RESET & BASE ===== */
+            *,
+            *::before,
+            *::after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            :root {
+                --bg-primary: #ffffff;
+                --bg-secondary: #f8f9fa;
+                --bg-card: #f1f3f5;
+                --accent: #495057;
+                --accent-light: #868e96;
+                --text-primary: #212529;
+                --text-secondary: #495057;
+                --text-muted: #868e96;
+                --border: rgba(0, 0, 0, 0.08);
+                --radius: 12px;
+                --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.1);
+            }
+
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    sans-serif;
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                overflow-x: hidden;
+                line-height: 1.6;
+            }
+
+            /* ===== NAV ===== */
+            nav {
+                position: fixed;
+                top: 0;
+                width: 100%;
+                z-index: 1000;
+                padding: 20px 40px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+            }
+
+            .nav-logo {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                font-family: "Playfair Display", serif;
+                font-weight: 700;
+                font-size: 1.5rem;
+                color: var(--text-primary);
+                text-decoration: none;
+            }
+
+            .nav-logo img {
+                height: 40px;
+                width: auto;
+            }
+
+            .nav-links {
+                display: flex;
+                gap: 32px;
+                align-items: center;
+            }
+
+            .nav-links a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.9rem;
+                font-weight: 500;
+                transition: color 0.3s;
+            }
+
+            .nav-links a:hover {
+                color: var(--text-primary);
+            }
+
+            .nav-cta {
+                padding: 10px 24px;
+                background: var(--accent);
+                color: #ffffff !important;
+                border-radius: 6px;
+                font-weight: 600;
+                transition:
+                    background 0.3s,
+                    transform 0.2s;
+            }
+
+            .nav-cta:hover {
+                background: var(--text-primary);
+                transform: translateY(-1px);
+            }
+
+            /* ===== HERO ===== */
+            .hero {
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                padding: 140px 24px 80px;
+                background: linear-gradient(
+                    180deg,
+                    var(--bg-secondary) 0%,
+                    var(--bg-primary) 100%
+                );
+            }
+
+            .hero-logo {
+                margin-bottom: 32px;
+            }
+
+            .hero-logo img {
+                height: 120px;
+                width: auto;
+            }
+
+            .hero h1 {
+                font-family: "Playfair Display", serif;
+                font-size: clamp(2.5rem, 6vw, 4rem);
+                font-weight: 700;
+                line-height: 1.1;
+                margin-bottom: 20px;
+                color: var(--text-primary);
+            }
+
+            .hero-sub {
+                font-size: 1.1rem;
+                color: var(--text-secondary);
+                max-width: 500px;
+                margin: 0 auto 32px;
+            }
+
+            .hero-price {
+                font-family: "Playfair Display", serif;
+                font-size: 2rem;
+                font-weight: 600;
+                color: var(--text-primary);
+                margin-bottom: 32px;
+            }
+
+            .hero-actions {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 14px 32px;
+                border-radius: 8px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.3s;
+                cursor: pointer;
+                border: none;
+                font-family: inherit;
+            }
+
+            .btn-primary {
+                background: var(--accent);
+                color: #ffffff;
+                box-shadow: var(--shadow);
+            }
+
+            .btn-primary:hover {
+                background: var(--text-primary);
+                transform: translateY(-2px);
+                box-shadow: var(--shadow-hover);
+            }
+
+            .btn-secondary {
+                background: transparent;
+                color: var(--text-primary);
+                border: 2px solid var(--border);
+            }
+
+            .btn-secondary:hover {
+                background: var(--bg-card);
+                border-color: var(--accent);
+            }
+
+            /* ===== FEATURES ===== */
+            .features {
+                padding: 100px 24px;
+                background: var(--bg-primary);
+            }
+
+            .section-header {
+                text-align: center;
+                margin-bottom: 60px;
+            }
+
+            .section-header h2 {
+                font-family: "Playfair Display", serif;
+                font-size: clamp(2rem, 4vw, 2.5rem);
+                font-weight: 700;
+                margin-bottom: 12px;
+                color: var(--text-primary);
+            }
+
+            .section-header p {
+                color: var(--text-secondary);
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 24px;
+                max-width: 1100px;
+                margin: 0 auto;
+            }
+
+            .feature-card {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 32px;
+                text-align: center;
+                transition:
+                    transform 0.3s,
+                    box-shadow 0.3s;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-hover);
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+                margin-bottom: 16px;
+            }
+
+            .feature-card h3 {
+                font-family: "Playfair Display", serif;
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: 8px;
+                color: var(--text-primary);
+            }
+
+            .feature-card p {
+                color: var(--text-secondary);
+                font-size: 0.9rem;
+            }
+
+            /* ===== SPONSORS ===== */
+            .sponsors {
+                padding: 80px 24px;
+                background: var(--bg-secondary);
+            }
+
+            .sponsors h2 {
+                font-family: "Playfair Display", serif;
+                text-align: center;
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 48px;
+                color: var(--text-primary);
+            }
+
+            .sponsors-grid {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 60px;
+                flex-wrap: wrap;
+                max-width: 900px;
+                margin: 0 auto;
+            }
+
+            .sponsor-logo {
+                background: var(--bg-primary);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                padding: 32px 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition:
+                    transform 0.3s,
+                    box-shadow 0.3s;
+                box-shadow: var(--shadow);
+            }
+
+            .sponsor-logo:hover {
+                transform: translateY(-4px);
+                box-shadow: var(--shadow-hover);
+            }
+
+            .sponsor-logo img {
+                height: 60px;
+                width: auto;
+                object-fit: contain;
+            }
+
+            .sponsor-logo.cat img {
+                height: 80px;
+            }
+
+            /* ===== SPECS ===== */
+            .specs {
+                padding: 100px 24px;
+                background: var(--bg-primary);
+            }
+
+            .specs-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+                gap: 20px;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
+
+            .spec-item {
+                display: flex;
+                align-items: flex-start;
+                gap: 16px;
+                padding: 24px;
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: var(--radius);
+                transition:
+                    transform 0.3s,
+                    box-shadow 0.3s;
+            }
+
+            .spec-item:hover {
+                transform: translateY(-2px);
+                box-shadow: var(--shadow);
+            }
+
+            .spec-icon {
+                font-size: 1.5rem;
+                flex-shrink: 0;
+            }
+
+            .spec-item h4 {
+                font-family: "Playfair Display", serif;
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 4px;
+                color: var(--text-primary);
+            }
+
+            .spec-item p {
+                color: var(--text-secondary);
+                font-size: 0.85rem;
+            }
+
+            /* ===== OPEN SOURCE ===== */
+            .opensource {
+                padding: 100px 24px;
+                background: var(--bg-secondary);
+            }
+
+            .oss-container {
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            .oss-container h2 {
+                font-family: "Playfair Display", serif;
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 20px;
+                color: var(--text-primary);
+            }
+
+            .oss-container p {
+                color: var(--text-secondary);
+                margin-bottom: 32px;
+                line-height: 1.8;
+            }
+
+            .oss-badges {
+                display: flex;
+                gap: 12px;
+                justify-content: center;
+                flex-wrap: wrap;
+                margin-bottom: 32px;
+            }
+
+            .oss-badge {
+                padding: 8px 16px;
+                background: var(--bg-primary);
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                font-size: 0.85rem;
+                color: var(--text-secondary);
+            }
+
+            /* ===== FOOTER ===== */
+            footer {
+                border-top: 1px solid var(--border);
+                padding: 60px 24px 40px;
+                text-align: center;
+                background: var(--bg-primary);
+            }
+
+            .footer-logo {
+                font-family: "Playfair Display", serif;
+                font-size: 1.5rem;
+                font-weight: 700;
+                margin-bottom: 12px;
+                color: var(--text-primary);
+            }
+
+            footer p {
+                color: var(--text-muted);
+                font-size: 0.85rem;
+            }
+
+            .footer-links {
+                display: flex;
+                gap: 24px;
+                justify-content: center;
+                margin: 24px 0;
+            }
+
+            .footer-links a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: color 0.3s;
+            }
+
+            .footer-links a:hover {
+                color: var(--text-primary);
+            }
+
+            /* ===== RESPONSIVE ===== */
+            @media (max-width: 768px) {
+                nav {
+                    padding: 16px 20px;
+                }
+                .nav-links {
+                    display: none;
+                }
+                .hero-logo img {
+                    height: 80px;
+                }
+                .hero h1 {
+                    font-size: 2rem;
+                }
+                .features-grid {
+                    grid-template-columns: 1fr;
+                }
+                .sponsors-grid {
+                    gap: 32px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav>
+            <a href="#" class="nav-logo">
+                <img src="tuxelectronics-logo.png" alt="TuxElectronics" />
+                TuxTag
+            </a>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#specs">Specs</a>
+                <a href="#sponsors">Sponsors</a>
+                <a
+                    href="https://github.com/orgs/TuxElectronics/repositories"
+                    target="_blank"
+                    class="nav-cta"
+                    >GitHub</a
+                >
+            </div>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-logo">
+                <img src="tuxelectronics-logo.png" alt="TuxElectronics" />
+            </div>
+            <h1>Find Anything.<br />Stay Private.</h1>
+            <p class="hero-sub">
+                TuxTag is an open-source Bluetooth tracker with zero telemetry,
+                long battery life, and compact design. Your stuff. Your privacy.
+            </p>
+            <div class="hero-price">90 TND</div>
+            <div class="hero-actions">
+                <a
+                    href="https://github.com/orgs/TuxElectronics/repositories"
+                    target="_blank"
+                    class="btn btn-primary"
+                >
+                    View on GitHub
+                </a>
+                <a href="#features" class="btn btn-secondary"> Learn More </a>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features" id="features">
+            <div class="section-header">
+                <h2>Key Features</h2>
+                <p>Everything you need. Nothing you don't.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📡</div>
+                    <h3>Long Range</h3>
+                    <p>
+                        Powerful Bluetooth antenna designed to cover large
+                        spaces with ease.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔋</div>
+                    <h3>Long Battery Life</h3>
+                    <p>
+                        Ultra-low power consumption with easily rechargeable
+                        LiPo.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>No Telemetry</h3>
+                    <p>
+                        No cloud, no servers, no tracking. Your data stays on
+                        your device.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📐</div>
+                    <h3>Compact Design</h3>
+                    <p>
+                        Fits comfortably in your palm. Small enough for any
+                        keychain or bag.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🐧</div>
+                    <h3>Open Source</h3>
+                    <p>
+                        Fully open source hardware and firmware. Audit, modify,
+                        contribute.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">♻️</div>
+                    <h3>RoHS Certified</h3>
+                    <p>
+                        Manufactured in compliance with RoHS directives. Safe
+                        and eco-friendly.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sponsors -->
+        <section class="sponsors" id="sponsors">
+            <h2>Sponsors</h2>
+            <div class="sponsors-grid">
+                <div class="sponsor-logo cat">
+                    <img src="cat-logo.png" alt="Computer Aided Technologies" />
+                </div>
+            </div>
+        </section>
+
+        <!-- Specs -->
+        <section class="specs" id="specs">
+            <div class="section-header">
+                <h2>Specifications</h2>
+                <p>Engineered for reliability and privacy.</p>
+            </div>
+
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-icon">📶</span>
+                    <div>
+                        <h4>Bluetooth 5.x</h4>
+                        <p>BLE with extended range mode</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">🔋</span>
+                    <div>
+                        <h4>Battery</h4>
+                        <p>Powerful LiPo battery, rechargeable</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">📐</span>
+                    <div>
+                        <h4>Size</h4>
+                        <p>Compact, fits in your palm</p>
+                    </div>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-icon">🔔</span>
+                    <div>
+                        <h4>Alerts</h4>
+                        <p>Buzzer and LED indicators</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Open Source -->
+        <section class="opensource">
+            <div class="oss-container">
+                <h2>Built in the Open</h2>
+                <p>
+                    TuxTag is 100% open source. Every line of firmware code,
+                    every schematic, and every design file is available for
+                    anyone to inspect, modify, and improve.
+                </p>
+                <div class="oss-badges">
+                    <span class="oss-badge">Open Hardware</span>
+                    <span class="oss-badge">Open Firmware</span>
+                    <span class="oss-badge">Open App</span>
+                </div>
+                <a
+                    href="https://github.com/orgs/TuxElectronics/repositories"
+                    target="_blank"
+                    class="btn btn-primary"
+                >
+                    Explore on GitHub
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">TuxTag</div>
+            <p>Open-source Bluetooth tracker by TuxElectronics</p>
+            <div class="footer-links">
+                <a
+                    href="https://github.com/orgs/TuxElectronics/repositories"
+                    target="_blank"
+                    >GitHub</a
+                >
+                <a href="#">Documentation</a>
+                <a href="#">Community</a>
+            </div>
+            <p style="margin-top: 32px; font-size: 0.75rem">
+                © 2026 TuxElectronics. Built with 🐧 in Tunisia.
+            </p>
+        </footer>
+    </body>
+</html>

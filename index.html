@@ -9,9 +9,6 @@
             content="TuxElectronics builds open-source, privacy-focused hardware. Discover TuxTag, our Bluetooth tracker."
         />
 
-        <!-- Auto-redirect to TuxTag after 3 seconds (optional) -->
-        <meta http-equiv="refresh" content="3;url=/tuxtag" />
-
         <link
             rel="icon"
             href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐧</text></svg>"
@@ -165,34 +162,28 @@
                 text-decoration: none;
                 transition: all 0.3s;
                 box-shadow: var(--shadow);
-                animation: pulse 2s infinite;
             }
 
             .hero-cta:hover {
                 background: var(--text-primary);
                 transform: translateY(-2px);
                 box-shadow: var(--shadow-hover);
-                animation: none;
             }
 
-            @keyframes pulse {
-                0%,
-                100% {
-                    box-shadow: 0 0 0 0 rgba(73, 80, 87, 0.4);
-                }
-                50% {
-                    box-shadow: 0 0 0 12px rgba(73, 80, 87, 0);
-                }
-            }
-
-            .redirect-note {
+            .cta-note {
                 margin-top: 24px;
                 font-size: 0.9rem;
                 color: var(--text-muted);
             }
 
-            .redirect-note strong {
-                color: var(--text-secondary);
+            .cta-note a {
+                color: var(--accent);
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .cta-note a:hover {
+                text-decoration: underline;
             }
 
             /* ===== PROJECTS PREVIEW ===== */
@@ -436,19 +427,9 @@
 
             <a href="/tuxtag" class="hero-cta"> → Discover TuxTag </a>
 
-            <p class="redirect-note">
-                Redirecting to <strong>TuxTag</strong> in
-                <span id="countdown">3</span> seconds...
-                <br />
-                <a
-                    href="/tuxtag"
-                    style="
-                        color: var(--accent);
-                        text-decoration: none;
-                        font-weight: 500;
-                    "
-                    >Go now →</a
-                >
+            <p class="cta-note">
+                Ready to learn more?
+                <a href="/tuxtag">Visit TuxTag →</a>
             </p>
         </section>
 
@@ -515,29 +496,5 @@
                 © 2026 TuxElectronics. All projects open source.
             </p>
         </footer>
-
-        <script>
-            // Countdown for auto-redirect
-            let seconds = 3;
-            const countdownEl = document.getElementById("countdown");
-
-            const timer = setInterval(() => {
-                seconds--;
-                countdownEl.textContent = seconds;
-                if (seconds <= 0) {
-                    clearInterval(timer);
-                    window.location.href = "/tuxtag";
-                }
-            }, 1000);
-
-            // Allow users to cancel redirect by clicking anywhere (optional)
-            document.addEventListener("click", (e) => {
-                if (!e.target.closest("a")) {
-                    // Only cancel if they click outside links
-                    // clearInterval(timer);
-                    // countdownEl.textContent = 'Paused';
-                }
-            });
-        </script>
     </body>
 </html>

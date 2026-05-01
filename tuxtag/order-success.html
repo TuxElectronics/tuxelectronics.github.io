@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Order Confirmed — TuxTag</title>
+        <link
+            rel="icon"
+            href="image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐧</text></svg>"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            /* ===== RESET & BASE ===== */
+            *,
+            *::before,
+            *::after {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            :root {
+                --bg-primary: #ffffff;
+                --bg-secondary: #f8f9fa;
+                --accent: #495057;
+                --text-primary: #212529;
+                --text-secondary: #495057;
+                --text-muted: #868e96;
+                --border: rgba(0, 0, 0, 0.08);
+                --radius: 12px;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            }
+            body {
+                font-family:
+                    "Inter",
+                    -apple-system,
+                    sans-serif;
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 40px 24px;
+                text-align: center;
+                line-height: 1.6;
+            }
+
+            /* ===== CARD ===== */
+            .card {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: 20px;
+                padding: 48px 40px;
+                max-width: 520px;
+                width: 100%;
+                box-shadow: var(--shadow);
+            }
+
+            .success-icon {
+                font-size: 4rem;
+                margin-bottom: 24px;
+                animation: bounce 0.6s ease;
+            }
+            @keyframes bounce {
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+            }
+
+            h1 {
+                font-family: "Playfair Display", serif;
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 16px;
+                color: var(--text-primary);
+            }
+
+            .order-id {
+                font-family: "Inter", monospace;
+                background: var(--bg-primary);
+                padding: 8px 16px;
+                border-radius: 6px;
+                font-size: 0.85rem;
+                color: var(--text-muted);
+                display: inline-block;
+                margin-bottom: 24px;
+            }
+
+            .delivery-box {
+                background: var(--bg-primary);
+                border: 1px dashed var(--border);
+                border-radius: 12px;
+                padding: 24px;
+                margin: 24px 0;
+            }
+
+            .delivery-years {
+                font-family: "Playfair Display", serif;
+                font-size: 3rem;
+                font-weight: 800;
+                color: var(--accent);
+                line-height: 1;
+                margin: 8px 0;
+            }
+
+            .delivery-year {
+                font-size: 1.1rem;
+                color: var(--text-secondary);
+            }
+
+            .note {
+                color: var(--text-muted);
+                font-size: 0.9rem;
+                margin-top: 24px;
+                font-style: italic;
+            }
+
+            .actions {
+                margin-top: 32px;
+                display: flex;
+                gap: 12px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .btn {
+                padding: 12px 28px;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 0.9rem;
+                text-decoration: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                transition: all 0.3s;
+                border: none;
+                cursor: pointer;
+                font-family: inherit;
+            }
+
+            .btn-primary {
+                background: var(--accent);
+                color: #fff;
+            }
+            .btn-primary:hover {
+                background: var(--text-primary);
+                transform: translateY(-1px);
+            }
+
+            .btn-secondary {
+                background: transparent;
+                color: var(--text-primary);
+                border: 1px solid var(--border);
+            }
+            .btn-secondary:hover {
+                background: var(--bg-primary);
+            }
+
+            footer {
+                margin-top: 48px;
+                color: var(--text-muted);
+                font-size: 0.8rem;
+            }
+
+            @media (max-width: 480px) {
+                .card {
+                    padding: 36px 24px;
+                }
+                h1 {
+                    font-size: 1.5rem;
+                }
+                .delivery-years {
+                    font-size: 2.2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="success-icon">✅</div>
+            <h1>Order Confirmed!</h1>
+            <p class="order-id">Order #<span id="order-id">TX-XXXX</span></p>
+
+            <p style="color: var(--text-secondary)">
+                Thank you for supporting open-source hardware. Your TuxTag is
+                being prepared with care.
+            </p>
+
+            <div class="delivery-box">
+                <p
+                    style="
+                        color: var(--text-muted);
+                        font-size: 0.9rem;
+                        margin-bottom: 8px;
+                    "
+                >
+                    Estimated Delivery
+                </p>
+                <div class="delivery-years">
+                    <span id="years">—</span> years
+                </div>
+                <p class="delivery-year">
+                    Arriving around <strong id="delivery-year">—</strong>
+                </p>
+            </div>
+
+            <p class="note">
+                🐧 Just kidding — your TuxTag will probably never ship. The long
+                delivery estimate is our way of saying: this device is built to
+                last.
+            </p>
+
+            <div class="actions">
+                <a href="/tuxtag" class="btn btn-primary">← Back to TuxTag</a>
+                <a
+                    href="https://github.com/orgs/TuxElectronics/repositories"
+                    target="_blank"
+                    class="btn btn-secondary"
+                >
+                    View Source Code
+                </a>
+            </div>
+        </div>
+
+        <footer>© 2026 TuxElectronics · Built with 🐧 in Tunisia</footer>
+
+        <script>
+            // Generate random order ID
+            const orderId =
+                "TX-" + Math.random().toString(36).substr(2, 6).toUpperCase();
+            document.getElementById("order-id").textContent = orderId;
+
+            // Generate random years between 70 and 110
+            const minYears = 70;
+            const maxYears = 110;
+            const randomYears =
+                Math.floor(Math.random() * (maxYears - minYears + 1)) +
+                minYears;
+            const currentYear = new Date().getFullYear();
+            const deliveryYear = currentYear + randomYears;
+
+            // Animate the numbers
+            document.getElementById("years").textContent = randomYears;
+            document.getElementById("delivery-year").textContent = deliveryYear;
+
+            // Fun confetti effect (optional, lightweight)
+            function createConfetti() {
+                const colors = ["#495057", "#868e96", "#adb5bd", "#ced4da"];
+                for (let i = 0; i < 30; i++) {
+                    const confetti = document.createElement("div");
+                    confetti.style.cssText = `
+          position: fixed;
+          width: 8px;
+          height: 8px;
+          background: ${colors[Math.floor(Math.random() * colors.length)]};
+          border-radius: 2px;
+          left: ${Math.random() * 100}vw;
+          top: -10px;
+          animation: fall ${2 + Math.random() * 3}s linear forwards;
+          opacity: ${0.6 + Math.random() * 0.4};
+          z-index: 9999;
+          pointer-events: none;
+        `;
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 5000);
+                }
+            }
+
+            // Add fall animation
+            const style = document.createElement("style");
+            style.textContent = `
+      @keyframes fall {
+        to {
+          transform: translateY(100vh) rotate(720deg);
+          opacity: 0;
+        }
+      }
+    `;
+            document.head.appendChild(style);
+
+            // Trigger confetti on load
+            window.addEventListener("load", createConfetti);
+        </script>
+    </body>
+</html>

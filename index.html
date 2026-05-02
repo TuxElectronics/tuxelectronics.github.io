@@ -150,6 +150,242 @@
                 font-size: 1.2rem;
             }
 
+            /* ===== HERO ===== */
+            .hero {
+                padding: 80px 40px;
+                text-align: center;
+                background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+                flex: 1;
+            }
+
+            .hero-logo {
+                margin-bottom: 32px;
+            }
+
+            .hero-logo img {
+                height: 100px;
+                width: auto;
+            }
+
+            .hero h1 {
+                font-family: "Playfair Display", serif;
+                font-size: 3rem;
+                font-weight: 700;
+                line-height: 1.2;
+                margin-bottom: 24px;
+                color: var(--text-primary);
+            }
+
+            html[lang="ar"] .hero h1 {
+                font-family: "Cairo", sans-serif;
+            }
+
+            .hero-sub {
+                font-size: 1.1rem;
+                color: var(--text-secondary);
+                max-width: 600px;
+                margin: 0 auto 32px;
+                line-height: 1.8;
+            }
+
+            .hero-cta {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 16px 32px;
+                background: var(--accent);
+                color: #ffffff;
+                text-decoration: none;
+                border-radius: var(--radius);
+                font-weight: 600;
+                font-size: 1rem;
+                transition: all 0.3s;
+                box-shadow: var(--shadow);
+            }
+
+            .hero-cta:hover {
+                background: var(--accent-light);
+                box-shadow: var(--shadow-hover);
+                transform: translateY(-2px);
+            }
+
+            .cta-note {
+                margin-top: 24px;
+                font-size: 0.9rem;
+                color: var(--text-muted);
+            }
+
+            .cta-note a {
+                color: var(--accent);
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .cta-note a:hover {
+                text-decoration: underline;
+            }
+
+            /* ===== PROJECTS ===== */
+            .projects {
+                padding: 80px 40px;
+                background: var(--bg-primary);
+            }
+
+            .projects h2 {
+                font-family: "Playfair Display", serif;
+                font-size: 2rem;
+                font-weight: 700;
+                text-align: center;
+                margin-bottom: 48px;
+                color: var(--text-primary);
+            }
+
+            html[lang="ar"] .projects h2 {
+                font-family: "Cairo", sans-serif;
+            }
+
+            .project-card {
+                display: flex;
+                align-items: flex-start;
+                gap: 32px;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 32px;
+                background: var(--bg-card);
+                border-radius: var(--radius);
+                box-shadow: var(--shadow);
+            }
+
+            .project-icon {
+                font-size: 3rem;
+                flex-shrink: 0;
+            }
+
+            .project-info h3 {
+                font-family: "Playfair Display", serif;
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 12px;
+                color: var(--text-primary);
+            }
+
+            html[lang="ar"] .project-info h3 {
+                font-family: "Cairo", sans-serif;
+            }
+
+            .project-info p {
+                color: var(--text-secondary);
+                line-height: 1.8;
+                margin-bottom: 16px;
+            }
+
+            .project-link {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                color: var(--accent);
+                text-decoration: none;
+                font-weight: 600;
+                transition: all 0.3s;
+            }
+
+            .project-link:hover {
+                gap: 12px;
+            }
+
+            /* ===== SPONSORS ===== */
+            .sponsors {
+                padding: 80px 40px;
+                background: var(--bg-secondary);
+                text-align: center;
+            }
+
+            .sponsors h2 {
+                font-family: "Playfair Display", serif;
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 16px;
+                color: var(--text-primary);
+            }
+
+            html[lang="ar"] .sponsors h2 {
+                font-family: "Cairo", sans-serif;
+            }
+
+            .sponsors > p {
+                color: var(--text-secondary);
+                max-width: 600px;
+                margin: 0 auto 48px;
+                line-height: 1.8;
+            }
+
+            .sponsors-grid {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 48px;
+                margin-bottom: 32px;
+            }
+
+            .sponsor-logo img {
+                height: 60px;
+                width: auto;
+                opacity: 0.8;
+                transition: opacity 0.3s;
+            }
+
+            .sponsor-logo img:hover {
+                opacity: 1;
+            }
+
+            .sponsor-label {
+                font-size: 0.9rem;
+                color: var(--text-muted);
+            }
+
+            /* ===== FOOTER ===== */
+            footer {
+                padding: 48px 40px;
+                background: var(--bg-primary);
+                border-top: 1px solid var(--border);
+                text-align: center;
+            }
+
+            .footer-logo {
+                font-family: "Playfair Display", serif;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                margin-bottom: 12px;
+            }
+
+            html[lang="ar"] .footer-logo {
+                font-family: "Cairo", sans-serif;
+            }
+
+            footer > p {
+                color: var(--text-secondary);
+                margin-bottom: 24px;
+            }
+
+            .footer-links {
+                display: flex;
+                justify-content: center;
+                gap: 24px;
+                flex-wrap: wrap;
+            }
+
+            .footer-links a {
+                color: var(--text-secondary);
+                text-decoration: none;
+                font-size: 0.9rem;
+                transition: color 0.3s;
+            }
+
+            .footer-links a:hover {
+                color: var(--text-primary);
+            }
+
             /* RTL Adjustments */
             html[dir="rtl"] .hero-cta,
             html[dir="rtl"] .project-link {
@@ -170,6 +406,10 @@
                 .nav-links {
                     width: 100%;
                     justify-content: center;
+                    order: 3;
+                }
+                .hero {
+                    padding: 40px 20px;
                 }
                 .hero-logo img {
                     height: 70px;
@@ -177,12 +417,29 @@
                 .hero h1 {
                     font-size: 1.8rem;
                 }
+                .hero-sub {
+                    font-size: 1rem;
+                }
+                .projects,
+                .sponsors {
+                    padding: 40px 20px;
+                }
                 .project-card {
                     flex-direction: column;
                     text-align: center;
+                    padding: 20px;
+                }
+                .project-icon {
+                    margin-bottom: 16px;
                 }
                 .sponsors-grid {
                     gap: 32px;
+                }
+                footer {
+                    padding: 32px 20px;
+                }
+                .footer-links {
+                    gap: 16px;
                 }
             }
         </style>

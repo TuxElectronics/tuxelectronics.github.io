@@ -13,6 +13,10 @@
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
             rel="stylesheet"
         />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
         <style>
             /* ===== RESET & BASE ===== */
             *,
@@ -53,6 +57,11 @@
                 line-height: 1.6;
             }
 
+            body.rtl {
+                direction: rtl;
+                font-family: "Cairo", sans-serif;
+            }
+
             /* ===== NAV ===== */
             nav {
                 position: fixed;
@@ -89,6 +98,10 @@
                 display: flex;
                 gap: 32px;
                 align-items: center;
+            }
+
+            body.rtl .nav-links {
+                gap: 32px;
             }
 
             .nav-links a {
@@ -173,6 +186,10 @@
                 gap: 16px;
                 flex-wrap: wrap;
                 justify-content: center;
+            }
+
+            body.rtl .hero-actions {
+                gap: 16px;
             }
 
             .btn {
@@ -453,6 +470,10 @@
                 margin: 24px 0;
             }
 
+            body.rtl .footer-links {
+                gap: 24px;
+            }
+
             .footer-links a {
                 color: var(--text-secondary);
                 text-decoration: none;
@@ -495,15 +516,19 @@
                 TuxTag
             </a>
             <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#specs">Specs</a>
-                <a href="#sponsors">Sponsors</a>
+                <a href="#features" data-i18n="nav-features">Features</a>
+                <a href="#specs" data-i18n="nav-specs">Specs</a>
+                <a href="#sponsors" data-i18n="nav-sponsors">Sponsors</a>
                 <a
                     href="https://github.com/orgs/TuxElectronics/repositories"
                     target="_blank"
                     class="nav-cta"
+                    data-i18n="nav-github"
                     >GitHub</a
                 >
+                <button id="lang-toggle" class="btn btn-secondary" style="padding: 8px 16px; font-size: 0.85rem;">
+                    🇸🇦 العربية
+                </button>
             </div>
         </nav>
 
@@ -512,12 +537,12 @@
             <div class="hero-logo">
                 <img src="tuxelectronics-logo.png" alt="TuxElectronics" />
             </div>
-            <h1>Find Anything.<br />Stay Private.</h1>
-            <p class="hero-sub">
+            <h1 data-i18n="hero-title">Find Anything.<br />Stay Private.</h1>
+            <p class="hero-sub" data-i18n="hero-subtitle">
                 TuxTag is an open-source Bluetooth tracker with zero telemetry,
                 long battery life, and compact design. Your stuff. Your privacy.
             </p>
-            <div class="hero-price">90 TND</div>
+            <div class="hero-price" data-i18n="hero-price">90 TND</div>
             <!-- Add this in your pricing section, near the 90 TND price -->
             <div style="margin-top: 24px">
                 <a
@@ -529,6 +554,7 @@
                         padding: 16px;
                         font-size: 1rem;
                     "
+                    data-i18n="hero-buy-btn"
                 >
                     🛒 Buy TuxTag — 90 TND
                 </a>
@@ -539,6 +565,7 @@
                         font-size: 0.8rem;
                         margin-top: 12px;
                     "
+                    data-i18n="hero-checkout-text"
                 >
                     Secure checkout · Open source · No telemetry
                 </p>
@@ -548,25 +575,26 @@
                     href="https://github.com/orgs/TuxElectronics/repositories"
                     target="_blank"
                     class="btn btn-primary"
+                    data-i18n="hero-github-btn"
                 >
                     View on GitHub
                 </a>
-                <a href="#features" class="btn btn-secondary"> Learn More </a>
+                <a href="#features" class="btn btn-secondary" data-i18n="hero-learn-btn"> Learn More </a>
             </div>
         </section>
 
         <!-- Features -->
         <section class="features" id="features">
             <div class="section-header">
-                <h2>Key Features</h2>
-                <p>Everything you need. Nothing you don't.</p>
+                <h2 data-i18n="features-title">Key Features</h2>
+                <p data-i18n="features-subtitle">Everything you need. Nothing you don't.</p>
             </div>
 
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">📡</div>
-                    <h3>Long Range</h3>
-                    <p>
+                    <h3 data-i18n="feature-range">Long Range</h3>
+                    <p data-i18n="feature-range-desc">
                         Powerful Bluetooth antenna designed to cover large
                         spaces with ease.
                     </p>
@@ -574,8 +602,8 @@
 
                 <div class="feature-card">
                     <div class="feature-icon">🔋</div>
-                    <h3>Long Battery Life</h3>
-                    <p>
+                    <h3 data-i18n="feature-battery">Long Battery Life</h3>
+                    <p data-i18n="feature-battery-desc">
                         Ultra-low power consumption with easily rechargeable
                         LiPo.
                     </p>
@@ -583,8 +611,8 @@
 
                 <div class="feature-card">
                     <div class="feature-icon">🔒</div>
-                    <h3>No Telemetry</h3>
-                    <p>
+                    <h3 data-i18n="feature-telemetry">No Telemetry</h3>
+                    <p data-i18n="feature-telemetry-desc">
                         No cloud, no servers, no tracking. Your data stays on
                         your device.
                     </p>
@@ -592,8 +620,8 @@
 
                 <div class="feature-card">
                     <div class="feature-icon">📐</div>
-                    <h3>Compact Design</h3>
-                    <p>
+                    <h3 data-i18n="feature-design">Compact Design</h3>
+                    <p data-i18n="feature-design-desc">
                         Fits comfortably in your palm. Small enough for any
                         keychain or bag.
                     </p>
@@ -601,8 +629,8 @@
 
                 <div class="feature-card">
                     <div class="feature-icon">🐧</div>
-                    <h3>Open Source</h3>
-                    <p>
+                    <h3 data-i18n="feature-opensource">Open Source</h3>
+                    <p data-i18n="feature-opensource-desc">
                         Fully open source hardware and firmware. Audit, modify,
                         contribute.
                     </p>
@@ -610,8 +638,8 @@
 
                 <div class="feature-card">
                     <div class="feature-icon">♻️</div>
-                    <h3>RoHS Certified</h3>
-                    <p>
+                    <h3 data-i18n="feature-rohs">RoHS Certified</h3>
+                    <p data-i18n="feature-rohs-desc">
                         Manufactured in compliance with RoHS directives. Safe
                         and eco-friendly.
                     </p>
@@ -621,7 +649,7 @@
 
         <!-- Sponsors -->
         <section class="sponsors" id="sponsors">
-            <h2>Sponsors</h2>
+            <h2 data-i18n="sponsors-title">Sponsors</h2>
             <div class="sponsors-grid">
                 <div class="sponsor-logo cat">
                     <img src="cat-logo.png" alt="Computer Aided Technologies" />
@@ -632,37 +660,37 @@
         <!-- Specs -->
         <section class="specs" id="specs">
             <div class="section-header">
-                <h2>Specifications</h2>
-                <p>Engineered for reliability and privacy.</p>
+                <h2 data-i18n="specs-title">Specifications</h2>
+                <p data-i18n="specs-subtitle">Engineered for reliability and privacy.</p>
             </div>
 
             <div class="specs-grid">
                 <div class="spec-item">
                     <span class="spec-icon">📶</span>
                     <div>
-                        <h4>Bluetooth 5.x</h4>
-                        <p>BLE with extended range mode</p>
+                        <h4 data-i18n="spec-bluetooth">Bluetooth 5.x</h4>
+                        <p data-i18n="spec-bluetooth-desc">BLE with extended range mode</p>
                     </div>
                 </div>
                 <div class="spec-item">
                     <span class="spec-icon">🔋</span>
                     <div>
-                        <h4>Battery</h4>
-                        <p>Powerful LiPo battery, rechargeable</p>
+                        <h4 data-i18n="spec-battery">Battery</h4>
+                        <p data-i18n="spec-battery-desc">Powerful LiPo battery, rechargeable</p>
                     </div>
                 </div>
                 <div class="spec-item">
                     <span class="spec-icon">📐</span>
                     <div>
-                        <h4>Size</h4>
-                        <p>Compact, fits in your palm</p>
+                        <h4 data-i18n="spec-size">Size</h4>
+                        <p data-i18n="spec-size-desc">Compact, fits in your palm</p>
                     </div>
                 </div>
                 <div class="spec-item">
                     <span class="spec-icon">🔔</span>
                     <div>
-                        <h4>Alerts</h4>
-                        <p>Buzzer and LED indicators</p>
+                        <h4 data-i18n="spec-alerts">Alerts</h4>
+                        <p data-i18n="spec-alerts-desc">Buzzer and LED indicators</p>
                     </div>
                 </div>
             </div>
@@ -671,21 +699,22 @@
         <!-- Open Source -->
         <section class="opensource">
             <div class="oss-container">
-                <h2>Built in the Open</h2>
-                <p>
+                <h2 data-i18n="oss-title">Built in the Open</h2>
+                <p data-i18n="oss-desc">
                     TuxTag is 100% open source. Every line of firmware code,
                     every schematic, and every design file is available for
                     anyone to inspect, modify, and improve.
                 </p>
                 <div class="oss-badges">
-                    <span class="oss-badge">Open Hardware</span>
-                    <span class="oss-badge">Open Firmware</span>
-                    <span class="oss-badge">Open App</span>
+                    <span class="oss-badge" data-i18n="oss-badge-hardware">Open Hardware</span>
+                    <span class="oss-badge" data-i18n="oss-badge-firmware">Open Firmware</span>
+                    <span class="oss-badge" data-i18n="oss-badge-app">Open App</span>
                 </div>
                 <a
                     href="https://github.com/orgs/TuxElectronics/repositories"
                     target="_blank"
                     class="btn btn-primary"
+                    data-i18n="oss-github-btn"
                 >
                     Explore on GitHub
                 </a>
@@ -694,20 +723,156 @@
 
         <!-- Footer -->
         <footer>
-            <div class="footer-logo">TuxTag</div>
-            <p>Open-source Bluetooth tracker by TuxElectronics</p>
+            <div class="footer-logo" data-i18n="footer-logo">TuxTag</div>
+            <p data-i18n="footer-desc">Open-source Bluetooth tracker by TuxElectronics</p>
             <div class="footer-links">
                 <a
                     href="https://github.com/orgs/TuxElectronics/repositories"
                     target="_blank"
+                    data-i18n="nav-github"
                     >GitHub</a
                 >
-                <a href="#">Documentation</a>
-                <a href="#">Community</a>
+                <a href="#" data-i18n="footer-docs">Documentation</a>
+                <a href="#" data-i18n="footer-community">Community</a>
             </div>
-            <p style="margin-top: 32px; font-size: 0.75rem">
+            <p style="margin-top: 32px; font-size: 0.75rem" data-i18n="footer-copyright">
                 © 2026 TuxElectronics. Built with 🐧 in Tunisia.
             </p>
         </footer>
+
+        <script>
+            const translations = {
+                en: {
+                    'nav-features': 'Features',
+                    'nav-specs': 'Specs',
+                    'nav-sponsors': 'Sponsors',
+                    'nav-github': 'GitHub',
+                    'hero-title': 'Find Anything.<br />Stay Private.',
+                    'hero-subtitle': 'TuxTag is an open-source Bluetooth tracker with zero telemetry, long battery life, and compact design. Your stuff. Your privacy.',
+                    'hero-price': '90 TND',
+                    'hero-buy-btn': '🛒 Buy TuxTag — 90 TND',
+                    'hero-checkout-text': 'Secure checkout · Open source · No telemetry',
+                    'hero-github-btn': 'View on GitHub',
+                    'hero-learn-btn': 'Learn More',
+                    'features-title': 'Key Features',
+                    'features-subtitle': 'Everything you need. Nothing you don\'t.',
+                    'feature-range': 'Long Range',
+                    'feature-range-desc': 'Powerful Bluetooth antenna designed to cover large spaces with ease.',
+                    'feature-battery': 'Long Battery Life',
+                    'feature-battery-desc': 'Ultra-low power consumption with easily rechargeable LiPo.',
+                    'feature-telemetry': 'No Telemetry',
+                    'feature-telemetry-desc': 'No cloud, no servers, no tracking. Your data stays on your device.',
+                    'feature-design': 'Compact Design',
+                    'feature-design-desc': 'Fits comfortably in your palm. Small enough for any keychain or bag.',
+                    'feature-opensource': 'Open Source',
+                    'feature-opensource-desc': 'Fully open source hardware and firmware. Audit, modify, contribute.',
+                    'feature-rohs': 'RoHS Certified',
+                    'feature-rohs-desc': 'Manufactured in compliance with RoHS directives. Safe and eco-friendly.',
+                    'sponsors-title': 'Sponsors',
+                    'specs-title': 'Specifications',
+                    'specs-subtitle': 'Engineered for reliability and privacy.',
+                    'spec-bluetooth': 'Bluetooth 5.x',
+                    'spec-bluetooth-desc': 'BLE with extended range mode',
+                    'spec-battery': 'Battery',
+                    'spec-battery-desc': 'Powerful LiPo battery, rechargeable',
+                    'spec-size': 'Size',
+                    'spec-size-desc': 'Compact, fits in your palm',
+                    'spec-alerts': 'Alerts',
+                    'spec-alerts-desc': 'Buzzer and LED indicators',
+                    'oss-title': 'Built in the Open',
+                    'oss-desc': 'TuxTag is 100% open source. Every line of firmware code, every schematic, and every design file is available for anyone to inspect, modify, and improve.',
+                    'oss-badge-hardware': 'Open Hardware',
+                    'oss-badge-firmware': 'Open Firmware',
+                    'oss-badge-app': 'Open App',
+                    'oss-github-btn': 'Explore on GitHub',
+                    'footer-logo': 'TuxTag',
+                    'footer-desc': 'Open-source Bluetooth tracker by TuxElectronics',
+                    'footer-docs': 'Documentation',
+                    'footer-community': 'Community',
+                    'footer-copyright': '© 2026 TuxElectronics. Built with 🐧 in Tunisia.'
+                },
+                ar: {
+                    'nav-features': 'الميزات',
+                    'nav-specs': 'المواصفات',
+                    'nav-sponsors': 'الرعاة',
+                    'nav-github': 'GitHub',
+                    'hero-title': 'اعثر على أي شيء.<br />حافظ على خصوصيتك.',
+                    'hero-subtitle': 'تاكس تاغ هو جهاز تعقب بلوتوث مفتوح المصدر بدون تتبع، مع عمر بطارية طويل وتصميم مدمج. أغراضك. خصوصيتك.',
+                    'hero-price': '90 دينار تونسي',
+                    'hero-buy-btn': '🛒 اشترِ تاكس تاغ — 90 دينار',
+                    'hero-checkout-text': 'دفع آمن · مفتوح المصدر · بدون تتبع',
+                    'hero-github-btn': 'اعرض على GitHub',
+                    'hero-learn-btn': 'اعرف المزيد',
+                    'features-title': 'الميزات الرئيسية',
+                    'features-subtitle': 'كل ما تحتاجه. لا شيء زائد.',
+                    'feature-range': 'مدى بعيد',
+                    'feature-range-desc': 'هوائي بلوتوث قوي مصمم لتغطية مساحات كبيرة بسهولة.',
+                    'feature-battery': 'عمر بطارية طويل',
+                    'feature-battery-desc': 'استهلاك طاقة منخفض للغاية مع بطارية ليثيوم قابلة لإعادة الشحن بسهولة.',
+                    'feature-telemetry': 'بدون تتبع',
+                    'feature-telemetry-desc': 'لا سحابة، لا خوادم، لا تتبع. بياناتك تبقى على جهازك.',
+                    'feature-design': 'تصميم مدمج',
+                    'feature-design-desc': 'يناسب راحتك بشكل مريح. صغير بما يكفي لأي سلسلة مفاتيح أو حقيبة.',
+                    'feature-opensource': 'مفتوح المصدر',
+                    'feature-opensource-desc': 'عتاد وبرمجيات ثابتة مفتوحة المصدر بالكامل. راجع، عدّل، ساهم.',
+                    'feature-rohs': 'معتمد RoHS',
+                    'feature-rohs-desc': 'مصنّع وفقًا لتوجيهات RoHS. آمن وصديق للبيئة.',
+                    'sponsors-title': 'الرعاة',
+                    'specs-title': 'المواصفات',
+                    'specs-subtitle': 'مصمم من أجل الموثوقية والخصوصية.',
+                    'spec-bluetooth': 'بلوتوث 5.x',
+                    'spec-bluetooth-desc': 'BLE مع وضع المدى الممتد',
+                    'spec-battery': 'البطارية',
+                    'spec-battery-desc': 'بطارية ليثيوم بوليمر قوية، قابلة لإعادة الشحن',
+                    'spec-size': 'الحجم',
+                    'spec-size-desc': 'مدمج، يناسب راحتك',
+                    'spec-alerts': 'التنبيهات',
+                    'spec-alerts-desc': 'جرس ومؤشرات LED',
+                    'oss-title': 'مبني بشكل مفتوح',
+                    'oss-desc': 'تاكس تاغ مفتوح المصدر بنسبة 100%. كل سطر من كود البرمجيات الثابتة، كل مخطط، وكل ملف تصميم متاح للجميع للفحص والتعديل والتحسين.',
+                    'oss-badge-hardware': 'عتاد مفتوح',
+                    'oss-badge-firmware': 'برمجيات مفتوحة',
+                    'oss-badge-app': 'تطبيق مفتوح',
+                    'oss-github-btn': 'استكشف على GitHub',
+                    'footer-logo': 'تاكس تاغ',
+                    'footer-desc': 'جهاز تعقب بلوتوث مفتوح المصدر بواسطة تاكس إليكترونيكس',
+                    'footer-docs': 'التوثيق',
+                    'footer-community': 'المجتمع',
+                    'footer-copyright': '© 2026 تاكس إليكترونيكس. صُنع في تونس 🐧.'
+                }
+            };
+
+            let currentLang = localStorage.getItem('tuxtag-lang') || 'en';
+
+            function updateLanguage(lang) {
+                document.documentElement.lang = lang;
+                
+                if (lang === 'ar') {
+                    document.body.classList.add('rtl');
+                    document.getElementById('lang-toggle').textContent = '🇺🇸 English';
+                } else {
+                    document.body.classList.remove('rtl');
+                    document.getElementById('lang-toggle').textContent = '🇸🇦 العربية';
+                }
+
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+
+                localStorage.setItem('tuxtag-lang', lang);
+                currentLang = lang;
+            }
+
+            document.getElementById('lang-toggle').addEventListener('click', () => {
+                const newLang = currentLang === 'en' ? 'ar' : 'en';
+                updateLanguage(newLang);
+            });
+
+            // Initialize language on page load
+            updateLanguage(currentLang);
+        </script>
     </body>
 </html>

@@ -1,10 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>TuxElectronics — Open Source Hardware</title>
+        <title id="page-title">TuxElectronics — Open Source Hardware</title>
         <meta
+            id="page-description"
             name="description"
             content="TuxElectronics builds open-source, privacy-focused hardware. Discover TuxTag, our Bluetooth tracker."
         />
@@ -15,7 +16,7 @@
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Cairo:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
 
@@ -44,6 +45,15 @@
                 --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.1);
             }
 
+            html[lang="ar"] {
+                font-family: "Cairo", sans-serif;
+            }
+
+            html[lang="ar"][dir="rtl"] {
+                direction: rtl;
+                text-align: right;
+            }
+
             html {
                 scroll-behavior: smooth;
             }
@@ -59,6 +69,10 @@
                 min-height: 100vh;
                 display: flex;
                 flex-direction: column;
+            }
+
+            html[lang="ar"] body {
+                font-family: "Cairo", sans-serif;
             }
 
             /* ===== NAV ===== */
@@ -96,6 +110,10 @@
                 align-items: center;
             }
 
+            html[dir="rtl"] .nav-links {
+                gap: 24px;
+            }
+
             .nav-links a {
                 color: var(--text-secondary);
                 text-decoration: none;
@@ -108,263 +126,38 @@
                 color: var(--text-primary);
             }
 
-            /* ===== HERO ===== */
-            .hero {
-                flex: 1;
+            /* Language Switcher */
+            .lang-switch {
                 display: flex;
-                flex-direction: column;
                 align-items: center;
-                justify-content: center;
-                text-align: center;
-                padding: 80px 24px;
-                background: linear-gradient(
-                    180deg,
-                    var(--bg-secondary) 0%,
-                    var(--bg-primary) 100%
-                );
-            }
-
-            .hero-logo {
-                margin-bottom: 24px;
-            }
-
-            .hero-logo img {
-                height: 100px;
-                width: auto;
-            }
-
-            .hero h1 {
-                font-family: "Playfair Display", serif;
-                font-size: clamp(2rem, 5vw, 3.5rem);
-                font-weight: 700;
-                line-height: 1.1;
-                margin-bottom: 16px;
-                color: var(--text-primary);
-            }
-
-            .hero-sub {
-                font-size: 1.1rem;
-                color: var(--text-secondary);
-                max-width: 520px;
-                margin: 0 auto 32px;
-            }
-
-            .hero-cta {
-                display: inline-flex;
-                align-items: center;
-                gap: 10px;
-                padding: 16px 40px;
-                background: var(--accent);
-                color: #ffffff !important;
+                gap: 8px;
+                padding: 8px 16px;
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
                 border-radius: 8px;
-                font-weight: 600;
-                font-size: 1rem;
-                text-decoration: none;
+                cursor: pointer;
                 transition: all 0.3s;
-                box-shadow: var(--shadow);
-            }
-
-            .hero-cta:hover {
-                background: var(--text-primary);
-                transform: translateY(-2px);
-                box-shadow: var(--shadow-hover);
-            }
-
-            .cta-note {
-                margin-top: 24px;
                 font-size: 0.9rem;
-                color: var(--text-muted);
-            }
-
-            .cta-note a {
-                color: var(--accent);
-                text-decoration: none;
                 font-weight: 500;
             }
 
-            .cta-note a:hover {
-                text-decoration: underline;
-            }
-
-            /* ===== PROJECTS PREVIEW ===== */
-            .projects {
-                padding: 60px 24px;
-                background: var(--bg-primary);
-                border-top: 1px solid var(--border);
-            }
-
-            .projects h2 {
-                font-family: "Playfair Display", serif;
-                text-align: center;
-                font-size: 1.8rem;
-                font-weight: 700;
-                margin-bottom: 40px;
-                color: var(--text-primary);
-            }
-
-            .project-card {
-                max-width: 500px;
-                margin: 0 auto;
-                background: var(--bg-secondary);
-                border: 1px solid var(--border);
-                border-radius: var(--radius);
-                padding: 32px;
-                display: flex;
-                align-items: center;
-                gap: 24px;
-                transition:
-                    transform 0.3s,
-                    box-shadow 0.3s;
-            }
-
-            .project-card:hover {
-                transform: translateY(-4px);
-                box-shadow: var(--shadow-hover);
-            }
-
-            .project-icon {
-                font-size: 2.5rem;
-                flex-shrink: 0;
-            }
-
-            .project-info h3 {
-                font-family: "Playfair Display", serif;
-                font-size: 1.3rem;
-                font-weight: 600;
-                margin-bottom: 8px;
-                color: var(--text-primary);
-            }
-
-            .project-info p {
-                color: var(--text-secondary);
-                font-size: 0.9rem;
-                margin-bottom: 16px;
-            }
-
-            .project-link {
-                color: var(--accent);
-                text-decoration: none;
-                font-weight: 600;
-                font-size: 0.9rem;
-                display: inline-flex;
-                align-items: center;
-                gap: 4px;
-                transition: color 0.3s;
-            }
-
-            .project-link:hover {
-                color: var(--text-primary);
-            }
-
-            /* ===== SPONSORS ===== */
-            .sponsors {
-                padding: 80px 24px;
-                background: var(--bg-secondary);
-                border-top: 1px solid var(--border);
-            }
-
-            .sponsors h2 {
-                font-family: "Playfair Display", serif;
-                text-align: center;
-                font-size: 2rem;
-                font-weight: 700;
-                margin-bottom: 16px;
-                color: var(--text-primary);
-            }
-
-            .sponsors > p {
-                text-align: center;
-                color: var(--text-secondary);
-                margin-bottom: 48px;
-                max-width: 500px;
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .sponsors-grid {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 60px;
-                flex-wrap: wrap;
-                max-width: 900px;
-                margin: 0 auto;
-            }
-
-            .sponsor-logo {
-                background: var(--bg-primary);
-                border: 1px solid var(--border);
-                border-radius: var(--radius);
-                padding: 32px 48px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition:
-                    transform 0.3s,
-                    box-shadow 0.3s;
+            .lang-switch:hover {
+                background: var(--bg-card);
                 box-shadow: var(--shadow);
             }
 
-            .sponsor-logo:hover {
-                transform: translateY(-4px);
-                box-shadow: var(--shadow-hover);
+            .lang-flag {
+                font-size: 1.2rem;
             }
 
-            .sponsor-logo img {
-                height: 60px;
-                width: auto;
-                object-fit: contain;
+            /* RTL Adjustments */
+            html[dir="rtl"] .hero-cta,
+            html[dir="rtl"] .project-link {
+                flex-direction: row-reverse;
             }
 
-            .sponsor-logo.cat img {
-                height: 80px;
-            }
-
-            .sponsor-label {
-                text-align: center;
-                margin-top: 40px;
-                font-size: 0.9rem;
-                color: var(--text-muted);
-            }
-
-            /* ===== FOOTER ===== */
-            footer {
-                border-top: 1px solid var(--border);
-                padding: 40px 24px;
-                text-align: center;
-                background: var(--bg-secondary);
-                margin-top: auto;
-            }
-
-            .footer-logo {
-                font-family: "Playfair Display", serif;
-                font-size: 1.3rem;
-                font-weight: 700;
-                margin-bottom: 12px;
-                color: var(--text-primary);
-            }
-
-            footer p {
-                color: var(--text-muted);
-                font-size: 0.85rem;
-            }
-
-            .footer-links {
-                display: flex;
-                gap: 24px;
-                justify-content: center;
-                margin: 16px 0;
-            }
-
-            .footer-links a {
-                color: var(--text-secondary);
-                text-decoration: none;
-                font-size: 0.9rem;
-                transition: color 0.3s;
-            }
-
-            .footer-links a:hover {
-                color: var(--text-primary);
+            html[dir="rtl"] .nav-logo {
+                flex-direction: row;
             }
 
             /* ===== RESPONSIVE ===== */
@@ -399,17 +192,21 @@
         <nav>
             <a href="#" class="nav-logo">
                 <img src="tuxelectronics-logo.png" alt="TuxElectronics" />
-                TuxElectronics
+                <span data-i18n="nav.logo">TuxElectronics</span>
             </a>
             <div class="nav-links">
                 <a
                     href="https://github.com/orgs/TuxElectronics/repositories"
                     target="_blank"
-                    >GitHub</a
+                    data-i18n="nav.github">GitHub</a
                 >
-                <a href="#projects">Projects</a>
-                <a href="#sponsors">Sponsors</a>
-                <a href="/tuxtag">TuxTag</a>
+                <a href="#projects" data-i18n="nav.projects">Projects</a>
+                <a href="#sponsors" data-i18n="nav.sponsors">Sponsors</a>
+                <a href="/tuxtag" data-i18n="nav.tuxtag">TuxTag</a>
+                <button class="lang-switch" onclick="toggleLanguage()" aria-label="Switch language">
+                    <span class="lang-flag" id="lang-flag">🇸🇦</span>
+                    <span id="lang-text">العربية</span>
+                </button>
             </div>
         </nav>
 
@@ -418,42 +215,42 @@
             <div class="hero-logo">
                 <img src="tuxelectronics-logo.png" alt="TuxElectronics" />
             </div>
-            <h1>Open Source Hardware.<br />Built for Privacy.</h1>
-            <p class="hero-sub">
+            <h1 data-i18n="hero.title">Open Source Hardware.<br />Built for Privacy.</h1>
+            <p class="hero-sub" data-i18n="hero.subtitle">
                 We design and build open-source electronics that put you in
                 control. No telemetry. No cloud dependency. Just honest
                 hardware.
             </p>
 
-            <a href="/tuxtag" class="hero-cta"> → Discover TuxTag </a>
+            <a href="/tuxtag" class="hero-cta"> <span data-i18n="hero.cta">→ Discover TuxTag</span> </a>
 
             <p class="cta-note">
-                Ready to learn more?
-                <a href="/tuxtag">Visit TuxTag →</a>
+                <span data-i18n="hero.ctaNote.before">Ready to learn more?</span>
+                <a href="/tuxtag"><span data-i18n="hero.ctaNote.link">Visit TuxTag →</span></a>
             </p>
         </section>
 
         <!-- Projects Preview -->
         <section class="projects" id="projects">
-            <h2>Our Projects</h2>
+            <h2 data-i18n="projects.title">Our Projects</h2>
 
             <div class="project-card">
                 <div class="project-icon">🏷️</div>
                 <div class="project-info">
                     <h3>TuxTag</h3>
-                    <p>
+                    <p data-i18n="projects.tuxtag.desc">
                         Open-source Bluetooth tracker with zero telemetry,
                         6-month battery life, and compact design.
                     </p>
-                    <a href="/tuxtag" class="project-link">Learn more →</a>
+                    <a href="/tuxtag" class="project-link"><span data-i18n="projects.tuxtag.link">Learn more →</span></a>
                 </div>
             </div>
         </section>
 
         <!-- Sponsors -->
         <section class="sponsors" id="sponsors">
-            <h2>Our Sponsors</h2>
-            <p>
+            <h2 data-i18n="sponsors.title">Our Sponsors</h2>
+            <p data-i18n="sponsors.subtitle">
                 We're grateful to our sponsors who make open-source hardware
                 possible.
             </p>
@@ -465,7 +262,7 @@
             </div>
 
             <p class="sponsor-label">
-                Interested in sponsoring our work?
+                <span data-i18n="sponsors.label.before">Interested in sponsoring our work?</span>
                 <a
                     href="#"
                     style="
@@ -473,28 +270,117 @@
                         text-decoration: none;
                         font-weight: 500;
                     "
-                    >Get in touch →</a
+                    ><span data-i18n="sponsors.label.link">Get in touch →</span></a
                 >
             </p>
         </section>
 
         <!-- Footer -->
         <footer>
-            <div class="footer-logo">TuxElectronics</div>
-            <p>Building transparent, privacy-first hardware from Tunisia.</p>
+            <div class="footer-logo" data-i18n="footer.logo">TuxElectronics</div>
+            <p data-i18n="footer.tagline">Building transparent, privacy-first hardware from Tunisia.</p>
             <div class="footer-links">
                 <a
                     href="https://github.com/orgs/TuxElectronics/repositories"
                     target="_blank"
-                    >GitHub</a
+                    data-i18n="nav.github">GitHub</a
                 >
-                <a href="/tuxtag">TuxTag</a>
-                <a href="#sponsors">Sponsors</a>
-                <a href="#">Contact</a>
+                <a href="/tuxtag" data-i18n="nav.tuxtag">TuxTag</a>
+                <a href="#sponsors" data-i18n="nav.sponsors">Sponsors</a>
+                <a href="#" data-i18n="footer.contact">Contact</a>
             </div>
-            <p style="margin-top: 24px; font-size: 0.75rem">
+            <p style="margin-top: 24px; font-size: 0.75rem" data-i18n="footer.copyright">
                 © 2026 TuxElectronics. All projects open source.
             </p>
         </footer>
+
+        <script>
+            const translations = {
+                en: {
+                    "nav.logo": "TuxElectronics",
+                    "nav.github": "GitHub",
+                    "nav.projects": "Projects",
+                    "nav.sponsors": "Sponsors",
+                    "nav.tuxtag": "TuxTag",
+                    "hero.title": "Open Source Hardware.<br />Built for Privacy.",
+                    "hero.subtitle": "We design and build open-source electronics that put you in control. No telemetry. No cloud dependency. Just honest hardware.",
+                    "hero.cta": "→ Discover TuxTag",
+                    "hero.ctaNote.before": "Ready to learn more?",
+                    "hero.ctaNote.link": "Visit TuxTag →",
+                    "projects.title": "Our Projects",
+                    "projects.tuxtag.desc": "Open-source Bluetooth tracker with zero telemetry, 6-month battery life, and compact design.",
+                    "projects.tuxtag.link": "Learn more →",
+                    "sponsors.title": "Our Sponsors",
+                    "sponsors.subtitle": "We're grateful to our sponsors who make open-source hardware possible.",
+                    "sponsors.label.before": "Interested in sponsoring our work?",
+                    "sponsors.label.link": "Get in touch →",
+                    "footer.logo": "TuxElectronics",
+                    "footer.tagline": "Building transparent, privacy-first hardware from Tunisia.",
+                    "footer.contact": "Contact",
+                    "footer.copyright": "© 2026 TuxElectronics. All projects open source."
+                },
+                ar: {
+                    "nav.logo": "تكس إلكترونيكس",
+                    "nav.github": "جيت هب",
+                    "nav.projects": "المشاريع",
+                    "nav.sponsors": "الرعاة",
+                    "nav.tuxtag": "تاكس تاغ",
+                    "hero.title": "عتاد مفتوح المصدر.<br />مصمم للخصوصية.",
+                    "hero.subtitle": "نصمم ونبني إلكترونيات مفتوحة المصدر تمنحك التحكم الكامل. بدون تتبع. بدون اعتماد على السحابة. مجرد عتاد أمين.",
+                    "hero.cta": "→ اكتشف تاكس تاغ",
+                    "hero.ctaNote.before": "مستعد لمعرفة المزيد؟",
+                    "hero.ctaNote.link": "زر تاكس تاغ ←",
+                    "projects.title": "مشاريعنا",
+                    "projects.tuxtag.desc": "متعقب بلوتوث مفتوح المصدر بدون تتبع، بعمر بطارية يصل إلى ٦ أشهر وتصميم مدمج.",
+                    "projects.tuxtag.link": "اعرف المزيد ←",
+                    "sponsors.title": "رعاتنا",
+                    "sponsors.subtitle": "نحن ممتنون لرعاتنا الذين يجعلون العتاد مفتوح المصدر ممكناً.",
+                    "sponsors.label.before": "مهتم برعاية عملنا؟",
+                    "sponsors.label.link": "تواصل معنا ←",
+                    "footer.logo": "تكس إلكترونيكس",
+                    "footer.tagline": "نبني عتاداً شفافاً يركز على الخصوصية من تونس.",
+                    "footer.contact": "اتصل بنا",
+                    "footer.copyright": "© ٢٠٢٦ تكس إلكترونيكس. جميع المشاريع مفتوحة المصدر."
+                }
+            };
+
+            let currentLang = localStorage.getItem('lang') || 'en';
+
+            function toggleLanguage() {
+                currentLang = currentLang === 'en' ? 'ar' : 'en';
+                applyLanguage(currentLang);
+                localStorage.setItem('lang', currentLang);
+            }
+
+            function applyLanguage(lang) {
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                
+                // Update button
+                document.getElementById('lang-flag').textContent = lang === 'ar' ? '🇺🇸' : '🇸🇦';
+                document.getElementById('lang-text').textContent = lang === 'ar' ? 'English' : 'العربية';
+                
+                // Update all translatable elements
+                document.querySelectorAll('[data-i18n]').forEach(element => {
+                    const key = element.getAttribute('data-i18n');
+                    if (translations[lang][key]) {
+                        element.innerHTML = translations[lang][key];
+                    }
+                });
+
+                // Update page title and description
+                document.getElementById('page-title').textContent = lang === 'ar' 
+                    ? 'تكس إلكترونيكس — عتاد مفتوح المصدر' 
+                    : 'TuxElectronics — Open Source Hardware';
+                document.getElementById('page-description').setAttribute('content', 
+                    lang === 'ar'
+                        ? 'تكس إلكترونيكس تبني عتاداً مفتوح المصدر يركز على الخصوصية. اكتشف تاكس تاغ، متعقب البلوتوث الخاص بنا.'
+                        : 'TuxElectronics builds open-source, privacy-focused hardware. Discover TuxTag, our Bluetooth tracker.'
+                );
+            }
+
+            // Apply language on page load
+            applyLanguage(currentLang);
+        </script>
     </body>
 </html>
